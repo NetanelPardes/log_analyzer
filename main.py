@@ -15,14 +15,14 @@ def main():
     # for port in sensitiveport:
     #     print(port)
 
-    greater_than_5000 = filter_by_size(network_line,5000)
+    greater_than_5000 = filter_by_size(network_line)
 
     # for port in greater_than_5000:
     #     print(port)
 
-    tag_lines = tag_traffic_by_size(network_line,5000)
+    tag_lines = tag_traffic_by_size(network_line)
 
-    for port in tag_lines:
-        print(port)
+    # for port in tag_lines:
+    #     print(port)
 if __name__ == "__main__":
     main()

@@ -1,12 +1,13 @@
+import config
 
 def external_addresses(data):
-    return [line for line in data if not line[1].startswith(('10.' ,'192.168'))]
+    return [line for line in data if not line[1].startswith(config.EXTERNAL_IP)]
 
 def filtering_by_sensitive_port(data):
-    return [line for line in data if line[3] in ('22', '3389' , '23')]
+    return [line for line in data if line[3] in config.SENSITIVE_PORT]
 
-def filter_by_size(data,size):
-    return [line for line in data if int(line[5]) > size]
+def filter_by_size(data):
+    return [line for line in data if int(line[5]) > config.PACKET_LARGE]
 
-def tag_traffic_by_size(data , size):
-    return [line + ["LARGE"] if int(line[5]) > size else line + ["NORMAL"] for line in data]
+def tag_traffic_by_size(data):
+    return [line + ["LARGE"] if int(line[5]) > config.PACKET_LARGE else line + ["NORMAL"] for line in data]
