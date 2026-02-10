@@ -1,10 +1,11 @@
 import reader
 import checks
 import reporter
+import analyzer
 
 def main():
     my_path = 'C:\\Users\\sendi\\PycharmProjects\\PythonProject1\\log_analyzer\\log_analyzer\\network_traffic.log'
-    # network_line = reader.read_network_file(my_path)
+    network_line = reader.read_network_file(my_path)
     #
     # external_IP_addresses = checks.external_addresses(network_line)
     #
@@ -31,6 +32,13 @@ def main():
     #
     # protocol_and_port = reporter.protocol_name_and_port_number(network_line)
     # # print(protocol_and_port)
+
+    # x = checks.message_at_forbidden_time(network_line)
+    # for i in x:
+    #     print(i)
+
+    my_list = analyzer.identifying_suspicions(network_line)
+    print(my_list)
 
 if __name__ == "__main__":
     main()

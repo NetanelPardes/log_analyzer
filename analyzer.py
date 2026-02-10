@@ -1,13 +1,32 @@
-import config
+import checks
 
-def external_addresses(data):
-    return [line for line in data if not line[1].startswith(config.EXTERNAL_IP)]
+def identifying_suspicions(data):
+    external_addresses_list = checks.external_addresses(data)
+    sensitive_port_list  = checks.filtering_by_sensitive_port(data)
+    large_packet_list  = checks.filter_by_size(data)
+    forbidden_time_list = checks.message_at_forbidden_time(data)
 
-def filtering_by_sensitive_port(data):
-    return [line for line in data if line[3] in config.SENSITIVE_PORT]
+    suspicions = {}
 
-def filter_by_size(data):
-    return [line for line in data if int(line[5]) > config.PACKET_LARGE]
+    for line in data:
+        suspicions[line[1]] = []
 
-def tag_traffic_by_size(data):
-    return [line + ["LARGE"] if int(line[5]) > config.PACKET_LARGE else line + ["NORMAL"] for line in data]
+    for line in data:
+
+        if line in external_addresses_list:
+            if "EXTERNAL_IP" not in suspicions[line[1]]:
+                suspicions[line[1]].append("EXTERNAL_IP")
+
+        if line in sensitive_port_list:
+            if "SENSITIVE_PORT" not in suspicions[line[1]]:
+                suspicions[line[1]].append("SENSITIVE_PORT")
+
+        if line in large_packet_list:
+            if "LARGE_PACKET" not in suspicions[line[1]]:
+                suspicions[line[1]].append("LARGE_PACKET")
+
+        if line in forbidden_time_list:
+            if "NIGHT_ACTIVITY" not in suspicions[line[1]]:
+                suspicions[line[1]].append("NIGHT_ACTIVITY")
+    return suspicions
+
