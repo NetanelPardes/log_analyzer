@@ -1,5 +1,6 @@
 from reader import read_network_file
 from analyzer import *
+import reporter
 
 def main():
     my_path = 'C:\\Users\\sendi\\PycharmProjects\\PythonProject1\\log_analyzer\\log_analyzer\\network_traffic.log'
@@ -24,5 +25,9 @@ def main():
 
     # for port in tag_lines:
     #     print(port)
+
+    network_dict = reporter.Number_uses_network(network_line)
+    print(network_dict)
+
 if __name__ == "__main__":
     main()
