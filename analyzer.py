@@ -30,3 +30,5 @@ def identifying_suspicions(data):
                 suspicions[line[1]].append("NIGHT_ACTIVITY")
     return suspicions
 
+def at_least_two_suspicions(ip_dict):
+    return {k: v for k, v in ip_dict.items() if len(v) >= 2}

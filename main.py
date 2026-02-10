@@ -37,8 +37,9 @@ def main():
     # for i in x:
     #     print(i)
 
-    my_list = analyzer.identifying_suspicions(network_line)
-    print(my_list)
+    # my_list = analyzer.identifying_suspicions(network_line)
+    # my_list2 = analyzer.at_least_two_suspicions(my_list)
+    # print(my_list2)
 
 if __name__ == "__main__":
     main()
