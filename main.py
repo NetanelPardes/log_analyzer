@@ -1,7 +1,10 @@
+from collections import Counter
+
 import reader
 import checks
 import reporter
 import analyzer
+
 
 def main():
     my_path = 'C:\\Users\\sendi\\PycharmProjects\\PythonProject1\\log_analyzer\\log_analyzer\\network_traffic.log'
@@ -40,6 +43,11 @@ def main():
     # my_list = analyzer.identifying_suspicions(network_line)
     # my_list2 = analyzer.at_least_two_suspicions(my_list)
     # print(my_list2)
+
+    crate_hours_list1 = reporter.crate_hours_list(network_line)
+    print(list(crate_hours_list1))
+    
+
 
 if __name__ == "__main__":
     main()
