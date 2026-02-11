@@ -17,3 +17,7 @@ def message_at_forbidden_time(data):
 
 def filter_by_port(data):
     return list(filter(lambda line: line[3] in config.SENSITIVE_PORT, data))
+
+def filter_by_time(data):
+    return list(filter(lambda line : int(config.NIGHT_ACTIVITY[0]) <= int(line[0].split()[1][:2]) < int(config.NIGHT_ACTIVITY[1]) , data))
+

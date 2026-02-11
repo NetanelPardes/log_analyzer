@@ -47,11 +47,17 @@ def main():
     # crate_hours_list1 = reporter.crate_hours_list(network_line)
     # print(list(crate_hours_list1))
 
-    package_size_conversion1 =  analyzer.package_size_conversion(network_line)
-    print(package_size_conversion1)
+    # package_size_conversion1 =  analyzer.package_size_conversion(network_line)
+    # print(package_size_conversion1)
+    #
+    # filter_by_port1= checks.filter_by_port(network_line)
+    # for i in filter_by_port1:
+    #     print(i)
 
-    filter_by_port1= checks.filter_by_port(network_line)
-    for i in filter_by_port1:
-        print(i)
+    # filter_by_time1 = checks.filter_by_time(network_line)
+    # for i in filter_by_time1:
+    #     print(i)
+
+    
 if __name__ == "__main__":
     main()
