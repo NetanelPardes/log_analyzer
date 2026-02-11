@@ -58,6 +58,12 @@ def main():
     # for i in filter_by_time1:
     #     print(i)
 
-    
+    checkers = reporter.create_suspicion_checkers()
+
+    for line in network_line:
+        suspicions = reporter.run_suspicion_checks(line, checkers)
+        if suspicions:
+            print(f"{line}: {suspicions}")
+
 if __name__ == "__main__":
     main()
