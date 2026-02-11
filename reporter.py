@@ -20,3 +20,6 @@ def create_suspicion_checkers():
 
 def run_suspicion_checks(line, checkers):
     return list(map(lambda item: item[0],filter(lambda item: item[1](line),checkers.items())))
+
+def analyze_log_with_suspicions(log_lines, checkers):
+    return list(filter(lambda result: len(result[1]) > 0,map(lambda line: (line, run_suspicion_checks(line, checkers)),log_lines)))
