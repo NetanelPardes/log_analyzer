@@ -50,5 +50,8 @@ def main():
     package_size_conversion1 =  analyzer.package_size_conversion(network_line)
     print(package_size_conversion1)
 
+    filter_by_port1= checks.filter_by_port(network_line)
+    for i in filter_by_port1:
+        print(i)
 if __name__ == "__main__":
     main()

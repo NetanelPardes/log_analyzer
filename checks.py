@@ -14,3 +14,6 @@ def tag_traffic_by_size(data):
 
 def message_at_forbidden_time(data):
     return [line for line in data if int(config.NIGHT_ACTIVITY[0]) <= int(line[0].split()[1][:2]) < int(config.NIGHT_ACTIVITY[1])]
+
+def filter_by_port(data):
+    return list(filter(lambda line: line[3] in config.SENSITIVE_PORT, data))
