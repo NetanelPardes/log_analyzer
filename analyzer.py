@@ -32,3 +32,6 @@ def identifying_suspicions(data):
 
 def at_least_two_suspicions(ip_dict):
     return {k: v for k, v in ip_dict.items() if len(v) >= 2}
+
+def package_size_conversion(data):
+    return list(map(lambda line: round(float(line[5]) / 1024, 2) , data))

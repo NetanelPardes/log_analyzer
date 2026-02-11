@@ -44,10 +44,11 @@ def main():
     # my_list2 = analyzer.at_least_two_suspicions(my_list)
     # print(my_list2)
 
-    crate_hours_list1 = reporter.crate_hours_list(network_line)
-    print(list(crate_hours_list1))
-    
+    # crate_hours_list1 = reporter.crate_hours_list(network_line)
+    # print(list(crate_hours_list1))
 
+    package_size_conversion1 =  analyzer.package_size_conversion(network_line)
+    print(package_size_conversion1)
 
 if __name__ == "__main__":
     main()
