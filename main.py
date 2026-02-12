@@ -1,14 +1,22 @@
-from collections import Counter
+from reader import read_log_generator
+from checks import suspicion_checks
+from analyzer import filter_suspicious, add_suspicion_details
+from reporter import count_items
+from analyzer import analyze_log
+from reporter import generate_report, save_report
 
-import reader
-import checks
-import reporter
-import analyzer
+from analyzer import analyze_log
+from reporter import (
+    generate_report,
+    save_report,
+    plot_suspicion_distribution,
+    plot_top_suspicious_ips
+)
 
 
 def main():
     my_path = 'C:\\Users\\sendi\\PycharmProjects\\PythonProject1\\log_analyzer\\log_analyzer\\network_traffic.log'
-    network_line = reader.read_network_file(my_path)
+    # network_line = reader.read_network_file(my_path)
     #
     # external_IP_addresses = checks.external_addresses(network_line)
     #
@@ -58,12 +66,42 @@ def main():
     # for i in filter_by_time1:
     #     print(i)
 
-    checkers = reporter.create_suspicion_checkers()
+    # checkers = reporter.create_suspicion_checkers()
+    #
+    # suspicious_lines = reporter.analyze_log_with_suspicions(network_line, checkers)
+    #
+    # for line, suspicions in suspicious_lines:
+    #     print(line, suspicions)
 
-    suspicious_lines = reporter.analyze_log_with_suspicions(network_line, checkers)
+    checks = suspicion_checks()
 
-    for line, suspicions in suspicious_lines:
-        print(line, suspicions)
+    lines = read_log_generator("network_traffic.log")
+    suspicious = filter_suspicious(lines, checks)
+
+
+    detailed = add_suspicion_details(suspicious, checks)
+
+    count = count_items(detailed)
+    print(f"Total suspicious: {count}")
+
+
+    suspicious = analyze_log("network_traffic.log")
+
+    report = generate_report(suspicious)
+
+    print(report)
+    save_report(report, "security_report.txt")
+
+    suspicious = analyze_log("network_traffic.log")
+
+    report = generate_report(suspicious)
+    print(report)
+    save_report(report, "security_report.txt")
+
+    # תצוגה ויזואלית
+    plot_suspicion_distribution()
+    plot_top_suspicious_ips(suspicious)
+
 
 if __name__ == "__main__":
     main()
